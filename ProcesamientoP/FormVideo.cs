@@ -1,5 +1,7 @@
 ﻿using AForge.Video;
 using AForge.Video.DirectShow;
+using Emgu.CV;
+using Emgu.CV.Structure;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -14,6 +16,13 @@ namespace ProcesamientoP
 {
     public partial class FormVideo : Form
     {
+        VideoCapture videoC;
+        bool isPlaying = false;
+        int TotalFrames;
+        int CurrentFramesNo;
+        Mat CurrentFrame; //frame q se muestra en el picture box
+        int FPS;
+
         public FormVideo()
         {
             InitializeComponent();
@@ -46,22 +55,6 @@ namespace ProcesamientoP
             this.Dispose();
         }
 
-        private void btnDet_Click(object sender, EventArgs e)
-        {
-            this.Hide();
-            new FormMovDet().Show();
-        }
-
-        private void btnVideo_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void btnFoto_Click(object sender, EventArgs e)
-        {
-            //this.Hide();
-            //new FormImage().Show();
-        }
 
         private void pictureBox1_Click(object sender, EventArgs e)
         {
@@ -87,19 +80,34 @@ namespace ProcesamientoP
 
             if (openFile.ShowDialog() == DialogResult.OK)
             {
-                FileVideoSource videoSource = new FileVideoSource(openFile.FileName);
-                // set NewFrame event handler
-                videoSource.NewFrame += new NewFrameEventHandler(Frame);
-                // start the video source
-                videoSource.Start();
+                videoC = new VideoCapture(openFile.FileName);
+                TotalFrames = Convert.ToInt32(videoC.GetCaptureProperty(Emgu.CV.CvEnum.CapProp.FrameCount));
+                FPS = Convert.ToInt32(videoC.GetCaptureProperty(Emgu.CV.CvEnum.CapProp.Fps));
+                CurrentFrame = new Mat();
+                CurrentFramesNo = 0;
+
+                videoC.Read(CurrentFrame);
+
+                pbVideo.Image = CurrentFrame.Bitmap;
+                pbVideo.SizeMode = PictureBoxSizeMode.StretchImage;
+
             }
 
         }
 
         private void btnPlayVid_Click(object sender, EventArgs e)
         {
+            if (videoC == null)
+            {
+                MessageBox.Show("No se ha detectado algún archivo", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+
+            }
             btnPlayVid.Visible = false;
             btnStopVid.Visible = true;
+            isPlaying = true;
+
+            PlayVideo();
         }
 
         private void btnPowerOff_Click(object sender, EventArgs e)
@@ -124,6 +132,7 @@ namespace ProcesamientoP
         {
             btnPlayVid.Visible = true;
             btnStopVid.Visible = false;
+            isPlaying = false;
         }
 
         private void pbVideo_Click(object sender, EventArgs e)
@@ -131,13 +140,33 @@ namespace ProcesamientoP
 
         }
 
-        private void Frame(object sender, NewFrameEventArgs eventArgs)
+        private async void PlayVideo()
         {
-            // get new frame. clonar el bitmap
-            Bitmap bitmap = eventArgs.Frame;
-            pbVideo.Image = bitmap;
-            //pbVideo.Refresh();
-            //pbVideo.SizeMode = PictureBoxSizeMode.StretchImage;
+           if(videoC == null)
+           {
+               MessageBox.Show("No se ha detectado algún archivo", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+
+           }
+
+           try
+           {
+                while (isPlaying == true && CurrentFramesNo<TotalFrames)
+                {
+                    //se toma la posicion del frame donde estamos y se setea
+                    videoC.SetCaptureProperty(Emgu.CV.CvEnum.CapProp.PosFrames, CurrentFramesNo);
+                    videoC.Read(CurrentFrame);
+                    pbVideo.Image = CurrentFrame.Bitmap;
+                    pbVideo.SizeMode = PictureBoxSizeMode.StretchImage;
+                    CurrentFramesNo+=1;
+                    await Task.Delay(500 / FPS);
+                }
+            }
+            catch(Exception e)
+           {
+               MessageBox.Show(e.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+           }
+
 
         }
     }

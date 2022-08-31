@@ -12,10 +12,12 @@ namespace ProcesamientoP
 {
     public partial class Main : Form
     {
+        FormImage fI = new FormImage();
+        FormMovDet fMD = new FormMovDet();
+
         public Main()
         {
             InitializeComponent();
-            FormImage fI = new FormImage();
             fI.TopLevel = false;
             fI.AutoScroll = true;
             panelswitch.Controls.Add(fI);
@@ -33,6 +35,12 @@ namespace ProcesamientoP
 
         private void btnVideo_Click(object sender, EventArgs e)
         {
+            if (fI.videoSource != null)
+                fI.turnOffCam();
+
+            if (fMD.videoSource != null)
+                fMD.turnOffCam();
+
             FormVideo fV = new FormVideo();
             fV.TopLevel = false;
             fV.AutoScroll = true;
@@ -57,8 +65,11 @@ namespace ProcesamientoP
 
         private void btnDet_Click(object sender, EventArgs e)
         {
-
-            FormMovDet fMD = new FormMovDet();
+            if(fI.videoSource != null)
+            {
+                fI.turnOffCam();
+            }
+          
             fMD.TopLevel = false;
             fMD.AutoScroll = true;
             panelswitch.Controls.Add(fMD);
@@ -74,11 +85,16 @@ namespace ProcesamientoP
             btnVideo.BackColor = ColorTranslator.FromHtml("#031D44");
             btnFoto.BackColor = ColorTranslator.FromHtml("#031D44");
 
+
         }
 
         private void btnFoto_Click(object sender, EventArgs e)
         {
-            FormImage fI = new FormImage();
+            if (fMD.videoSource !=null)
+            {
+                fMD.turnOffCam();
+            }
+
             fI.TopLevel = false;
             fI.AutoScroll = true;
             panelswitch.Controls.Add(fI);

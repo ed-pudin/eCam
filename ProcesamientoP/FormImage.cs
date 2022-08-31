@@ -16,14 +16,13 @@ namespace ProcesamientoP
     public partial class FormImage : Form
     {
         private FilterInfoCollection videoDevices;
-        private VideoCaptureDevice videoSource;
+        public VideoCaptureDevice videoSource=null;
         public bool webCamOn = false;
         public FormImage()
         {
 
             InitializeComponent();
-            if(pbImage.Image != null)
-                turnOffCam();
+           
             //Cargar dispositvos de video
             videoDevices = new FilterInfoCollection(FilterCategory.VideoInputDevice);
             if(videoDevices.Count > 0)

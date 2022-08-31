@@ -18,7 +18,7 @@ namespace ProcesamientoP
     public partial class FormMovDet : Form
     {
         private FilterInfoCollection videoDevices;
-        private VideoCaptureDevice videoSource;
+        public VideoCaptureDevice videoSource=null;
         public bool webCamOn = false;
         static readonly CascadeClassifier cascadeClassifier = new CascadeClassifier("haarcascade_frontalface_alt_tree.xml"); // clase que ayuda a detectar objetos en el video stream
 

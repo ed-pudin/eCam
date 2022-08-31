@@ -65,7 +65,7 @@
             this.btnPlayVid.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnPlayVid.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(112)))), ((int)(((byte)(162)))), ((int)(((byte)(136)))));
             this.btnPlayVid.ImageAlign = System.Drawing.ContentAlignment.TopLeft;
-            this.btnPlayVid.Location = new System.Drawing.Point(560, 26);
+            this.btnPlayVid.Location = new System.Drawing.Point(558, 27);
             this.btnPlayVid.Name = "btnPlayVid";
             this.btnPlayVid.Size = new System.Drawing.Size(50, 50);
             this.btnPlayVid.TabIndex = 5;
