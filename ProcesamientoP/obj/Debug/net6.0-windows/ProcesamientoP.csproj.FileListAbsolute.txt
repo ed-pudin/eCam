@@ -50,5 +50,3 @@ E:\Archivos de programa\repos\ProcesamientoP\ProcesamientoP\bin\Debug\net6.0-win
 E:\Archivos de programa\repos\ProcesamientoP\ProcesamientoP\bin\Debug\net6.0-windows\zh-tw\ZedGraph.resources.dll
 E:\Archivos de programa\repos\ProcesamientoP\ProcesamientoP\bin\Debug\net6.0-windows\Emgu.CV.UI.dll
 E:\Archivos de programa\repos\ProcesamientoP\ProcesamientoP\bin\Debug\net6.0-windows\Emgu.CV.World.dll
-E:\Archivos de programa\repos\ProcesamientoP\ProcesamientoP\bin\Debug\net6.0-windows\Emgu.CV.UI.xml
-E:\Archivos de programa\repos\ProcesamientoP\ProcesamientoP\bin\Debug\net6.0-windows\Emgu.CV.World.xml

@@ -37,7 +37,7 @@
             this.btnStopVid = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
             this.pbVideo = new System.Windows.Forms.PictureBox();
-            this.cbCamera = new System.Windows.Forms.ComboBox();
+            this.cbFilters = new System.Windows.Forms.ComboBox();
             this.panel3.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbVideo)).BeginInit();
@@ -140,7 +140,7 @@
             // 
             this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(3)))), ((int)(((byte)(29)))), ((int)(((byte)(68)))));
             this.panel2.Controls.Add(this.pbVideo);
-            this.panel2.Controls.Add(this.cbCamera);
+            this.panel2.Controls.Add(this.cbFilters);
             this.panel2.Controls.Add(this.panel3);
             this.panel2.Location = new System.Drawing.Point(0, 0);
             this.panel2.Name = "panel2";
@@ -160,14 +160,15 @@
             this.pbVideo.TabStop = false;
             this.pbVideo.Click += new System.EventHandler(this.pbVideo_Click);
             // 
-            // cbCamera
+            // cbFilters
             // 
-            this.cbCamera.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbCamera.FormattingEnabled = true;
-            this.cbCamera.Location = new System.Drawing.Point(184, 24);
-            this.cbCamera.Name = "cbCamera";
-            this.cbCamera.Size = new System.Drawing.Size(559, 23);
-            this.cbCamera.TabIndex = 4;
+            this.cbFilters.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbFilters.FormattingEnabled = true;
+            this.cbFilters.Location = new System.Drawing.Point(184, 24);
+            this.cbFilters.Name = "cbFilters";
+            this.cbFilters.Size = new System.Drawing.Size(559, 23);
+            this.cbFilters.TabIndex = 4;
+            this.cbFilters.SelectedIndexChanged += new System.EventHandler(this.cbCamera_SelectedIndexChanged);
             // 
             // FormVideo
             // 
@@ -195,7 +196,7 @@
         private Button btnAddVid;
         private Button btnStopVid;
         private Button btnPlayVid;
-        private ComboBox cbCamera;
+        private ComboBox cbFilters;
         private PictureBox pbVideo;
     }
 }

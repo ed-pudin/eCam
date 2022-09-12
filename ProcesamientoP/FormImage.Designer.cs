@@ -83,6 +83,7 @@
             this.cbFilters.Name = "cbFilters";
             this.cbFilters.Size = new System.Drawing.Size(418, 23);
             this.cbFilters.TabIndex = 4;
+            this.cbFilters.SelectedIndexChanged += new System.EventHandler(this.cbFilters_SelectedIndexChanged);
             // 
             // cbCamera
             // 

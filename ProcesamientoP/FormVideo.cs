@@ -23,9 +23,14 @@ namespace ProcesamientoP
         Mat CurrentFrame; //frame q se muestra en el picture box
         int FPS;
 
+        string[] filters = { "Blanco y negro", "Sepia", "Espejo", "Negativo" };
+
         public FormVideo()
         {
             InitializeComponent();
+            //cargar filtros
+            foreach (string filter in filters)
+                cbFilters.Items.Add(filter);
         }
 
         private void panel3_Paint(object sender, PaintEventArgs e)
@@ -153,10 +158,20 @@ namespace ProcesamientoP
            {
                 while (isPlaying == true && CurrentFramesNo<TotalFrames)
                 {
+
+                    int filterTemp = cbFilters.SelectedIndex;
+
                     //se toma la posicion del frame donde estamos y se setea
                     videoC.SetCaptureProperty(Emgu.CV.CvEnum.CapProp.PosFrames, CurrentFramesNo);
                     videoC.Read(CurrentFrame);
-                    pbVideo.Image = CurrentFrame.Bitmap;
+                    Bitmap newImage = CurrentFrame.Bitmap;
+
+                    if (filterTemp != -1)
+                    {
+                        newImage = setFilter(filterTemp, CurrentFrame.Bitmap);
+                    }
+
+                    pbVideo.Image = newImage;
                     pbVideo.SizeMode = PictureBoxSizeMode.StretchImage;
                     CurrentFramesNo+=1;
                     await Task.Delay(500 / FPS);
@@ -168,6 +183,31 @@ namespace ProcesamientoP
            }
 
 
+        }
+
+        private void cbCamera_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Bitmap newImage = CurrentFrame.Bitmap;
+            newImage = setFilter(cbFilters.SelectedIndex,newImage);
+            pbVideo.Image = newImage;
+            pbVideo.SizeMode = PictureBoxSizeMode.StretchImage;
+
+        }
+
+        private Bitmap setFilter(int filterTemp, Bitmap bmp)
+        {
+            Bitmap result = null;
+            Filters filter = new Filters();
+
+            switch (filterTemp)
+            {
+                case 0: result = filter.blackndwhite(bmp); break;
+                case 1: result = filter.sepia(bmp); break;
+                case 2: result = filter.mirror(bmp); break;
+                case 3: result = filter.negative(bmp); break;
+            }
+
+            return result;
         }
     }
 }

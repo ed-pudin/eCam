@@ -18,6 +18,8 @@ namespace ProcesamientoP
         private FilterInfoCollection videoDevices;
         public VideoCaptureDevice videoSource=null;
         public bool webCamOn = false;
+        string[] filters = { "Blanco y negro", "Sepia", "Espejo", "Negativo"};
+        public Bitmap OriginalImage = null;
         public FormImage()
         {
 
@@ -38,6 +40,9 @@ namespace ProcesamientoP
 
             }
 
+            //cargar filtros
+            foreach(string filter in filters)
+                cbFilters.Items.Add(filter);
         }
 
         private void btnPowerOn_Click(object sender, EventArgs e)
@@ -81,6 +86,9 @@ namespace ProcesamientoP
 
                 pbImageTaken.Image = new Bitmap(file.FileName);
                 pbImageTaken.SizeMode = PictureBoxSizeMode.StretchImage;
+
+                OriginalImage = (Bitmap)pbImageTaken.Image;
+
             }
 
 
@@ -108,8 +116,11 @@ namespace ProcesamientoP
             {
                 pbImageTaken.Image = (Image)pbImage.Image.Clone();
                 pbImageTaken.SizeMode = PictureBoxSizeMode.StretchImage;
+
+                OriginalImage = (Bitmap)pbImageTaken.Image;
+
             }
-           
+
         }
 
         private void btnTakeP_MouseDown(object sender, MouseEventArgs e)
@@ -136,6 +147,7 @@ namespace ProcesamientoP
                 if (saveFileDialog.ShowDialog() == DialogResult.OK)
                 {
                     pbImageTaken.Image.Save(saveFileDialog.FileName);
+
                 }
                 else
                 {
@@ -200,5 +212,25 @@ namespace ProcesamientoP
             btnPowerOn.Visible = true;
             btnPowerOff.Visible = false;
         }
+
+        private void cbFilters_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            int filterTemp = cbFilters.SelectedIndex;
+            Bitmap bmp = OriginalImage;
+            Bitmap result= null;
+            Filters filter = new Filters();
+
+            switch (filterTemp)
+            {
+                case 0: result = filter.blackndwhite(bmp); break;
+                case 1: result = filter.sepia(bmp); break;
+                case 2: result = filter.mirror(bmp); break;
+                case 3: result = filter.negative(bmp); break;
+            }
+
+            if(result != null)
+                pbImageTaken.Image = result;
+        }
+       
     }
 }
