@@ -112,6 +112,7 @@
             // 
             // panel1
             // 
+            this.panel1.AutoSize = true;
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(112)))), ((int)(((byte)(162)))), ((int)(((byte)(136)))));
             this.panel1.Controls.Add(this.btnSalir);
             this.panel1.Controls.Add(this.btnDet);
@@ -146,6 +147,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 

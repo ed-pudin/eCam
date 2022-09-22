@@ -10,6 +10,8 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using AForge.Video;
 using AForge.Video.DirectShow;
+using AForge.Imaging;
+using ZedGraph;
 
 namespace ProcesamientoP
 {
@@ -18,8 +20,11 @@ namespace ProcesamientoP
         private FilterInfoCollection videoDevices;
         public VideoCaptureDevice videoSource=null;
         public bool webCamOn = false;
-        string[] filters = { "Blanco y negro", "Sepia", "Espejo", "Negativo"};
+        string[] filters = { "Blanco y negro", "Sepia", "Espejo", "Negativo", "Azul"};
         public Bitmap OriginalImage = null;
+        PointPairList lstRedHistogram = new PointPairList();
+        AForge.Imaging.ImageStatistics statistics = null;
+
         public FormImage()
         {
 
@@ -43,6 +48,7 @@ namespace ProcesamientoP
             //cargar filtros
             foreach(string filter in filters)
                 cbFilters.Items.Add(filter);
+
         }
 
         private void btnPowerOn_Click(object sender, EventArgs e)
@@ -88,7 +94,7 @@ namespace ProcesamientoP
                 pbImageTaken.SizeMode = PictureBoxSizeMode.StretchImage;
 
                 OriginalImage = (Bitmap)pbImageTaken.Image;
-
+                getStatistics();
             }
 
 
@@ -114,10 +120,11 @@ namespace ProcesamientoP
             }
             else
             {
-                pbImageTaken.Image = (Image)pbImage.Image.Clone();
+                pbImageTaken.Image = (System.Drawing.Image)pbImage.Image.Clone(); //image
                 pbImageTaken.SizeMode = PictureBoxSizeMode.StretchImage;
 
                 OriginalImage = (Bitmap)pbImageTaken.Image;
+                getStatistics();
 
             }
 
@@ -226,11 +233,40 @@ namespace ProcesamientoP
                 case 1: result = filter.sepia(bmp); break;
                 case 2: result = filter.mirror(bmp); break;
                 case 3: result = filter.negative(bmp); break;
+                case 4: result = filter.blue(bmp); break;
             }
 
             if(result != null)
                 pbImageTaken.Image = result;
+
+            getStatistics();
         }
+
+        private void zedGraph_Load(object sender, EventArgs e)
+        {
+          
+
+        }
+
+        private void FormImage_Load(object sender, EventArgs e)
+        {
+
+        }
+        private void getStatistics()
+        {
+            statistics = new AForge.Imaging.ImageStatistics((Bitmap)pbImageTaken.Image);
+
+            histogram1.Values = statistics.Red.Values;
+            histogram2.Values = statistics.Blue.Values;
+            histogram3.Values = statistics.Green.Values;
+
+            histogram1.Show();
+            histogram2.Show();
+            histogram3.Show();
+
+           
+        }
+
        
     }
 }

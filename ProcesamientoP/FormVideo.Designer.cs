@@ -53,7 +53,7 @@
             this.panel3.Controls.Add(this.btnStopVid);
             this.panel3.Location = new System.Drawing.Point(-2, 510);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(949, 103);
+            this.panel3.Size = new System.Drawing.Size(952, 103);
             this.panel3.TabIndex = 0;
             this.panel3.Paint += new System.Windows.Forms.PaintEventHandler(this.panel3_Paint);
             // 
@@ -174,6 +174,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoSize = true;
             this.ClientSize = new System.Drawing.Size(950, 613);
             this.Controls.Add(this.panel2);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;

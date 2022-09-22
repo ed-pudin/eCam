@@ -30,6 +30,9 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormImage));
             this.panel2 = new System.Windows.Forms.Panel();
+            this.histogram3 = new AForge.Controls.Histogram();
+            this.histogram2 = new AForge.Controls.Histogram();
+            this.histogram1 = new AForge.Controls.Histogram();
             this.label1 = new System.Windows.Forms.Label();
             this.cbFilters = new System.Windows.Forms.ComboBox();
             this.cbCamera = new System.Windows.Forms.ComboBox();
@@ -50,6 +53,9 @@
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(3)))), ((int)(((byte)(29)))), ((int)(((byte)(68)))));
+            this.panel2.Controls.Add(this.histogram3);
+            this.panel2.Controls.Add(this.histogram2);
+            this.panel2.Controls.Add(this.histogram1);
             this.panel2.Controls.Add(this.label1);
             this.panel2.Controls.Add(this.cbFilters);
             this.panel2.Controls.Add(this.cbCamera);
@@ -62,12 +68,45 @@
             this.panel2.TabIndex = 4;
             this.panel2.Paint += new System.Windows.Forms.PaintEventHandler(this.panel2_Paint);
             // 
+            // histogram3
+            // 
+            this.histogram3.BackColor = System.Drawing.Color.White;
+            this.histogram3.Color = System.Drawing.Color.Green;
+            this.histogram3.Location = new System.Drawing.Point(704, 339);
+            this.histogram3.Name = "histogram3";
+            this.histogram3.Size = new System.Drawing.Size(203, 129);
+            this.histogram3.TabIndex = 9;
+            this.histogram3.Text = "histogram3";
+            this.histogram3.Values = null;
+            // 
+            // histogram2
+            // 
+            this.histogram2.BackColor = System.Drawing.Color.White;
+            this.histogram2.Color = System.Drawing.Color.Blue;
+            this.histogram2.Location = new System.Drawing.Point(472, 339);
+            this.histogram2.Name = "histogram2";
+            this.histogram2.Size = new System.Drawing.Size(203, 129);
+            this.histogram2.TabIndex = 8;
+            this.histogram2.Text = "histogram2";
+            this.histogram2.Values = null;
+            // 
+            // histogram1
+            // 
+            this.histogram1.BackColor = System.Drawing.Color.White;
+            this.histogram1.Color = System.Drawing.Color.Red;
+            this.histogram1.Location = new System.Drawing.Point(239, 339);
+            this.histogram1.Name = "histogram1";
+            this.histogram1.Size = new System.Drawing.Size(203, 129);
+            this.histogram1.TabIndex = 7;
+            this.histogram1.Text = "histogram1";
+            this.histogram1.Values = null;
+            // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Segoe UI", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(140, 374);
+            this.label1.Location = new System.Drawing.Point(37, 373);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(196, 45);
             this.label1.TabIndex = 5;
@@ -214,6 +253,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoSize = true;
             this.ClientSize = new System.Drawing.Size(950, 613);
             this.Controls.Add(this.panel2);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
@@ -242,5 +282,8 @@
         private PictureBox pbImageTaken;
         private PictureBox pbImage;
         private Label label1;
+        private AForge.Controls.Histogram histogram3;
+        private AForge.Controls.Histogram histogram2;
+        private AForge.Controls.Histogram histogram1;
     }
 }

@@ -111,5 +111,21 @@ namespace ProcesamientoP
 
             return image;
         }
+
+        public Bitmap blue(Bitmap bmp)
+        {
+            Bitmap image = new Bitmap(bmp.Width, bmp.Height);
+            for (Int32 y = 0; y < image.Height; y++)
+                for (Int32 x = 0; x < image.Width; x++)
+                {
+                    Color pixelColor = bmp.GetPixel(x, y);
+                    pixelColor = Color.FromArgb(pixelColor.A, 0, 0, pixelColor.B);
+                    image.SetPixel(x, y, pixelColor);
+                }
+
+
+            return image;
+        }
+
     }
 }

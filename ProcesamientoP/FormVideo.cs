@@ -23,7 +23,7 @@ namespace ProcesamientoP
         Mat CurrentFrame; //frame q se muestra en el picture box
         int FPS;
 
-        string[] filters = { "Blanco y negro", "Sepia", "Espejo", "Negativo" };
+        string[] filters = { "Blanco y negro", "Sepia", "Espejo", "Negativo", "Azul" };
 
         public FormVideo()
         {
@@ -205,6 +205,8 @@ namespace ProcesamientoP
                 case 1: result = filter.sepia(bmp); break;
                 case 2: result = filter.mirror(bmp); break;
                 case 3: result = filter.negative(bmp); break;
+                case 4: result = filter.blue(bmp); break;
+
             }
 
             return result;

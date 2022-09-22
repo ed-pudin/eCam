@@ -10,6 +10,8 @@
 
   <ItemGroup>
     <PackageReference Include="AForge" Version="2.2.5" />
+    <PackageReference Include="AForge.Controls" Version="2.2.5" />
+    <PackageReference Include="AForge.Imaging" Version="2.2.5" />
     <PackageReference Include="AForge.Video" Version="2.2.5" />
     <PackageReference Include="AForge.Video.DirectShow" Version="2.2.5" />
     <PackageReference Include="Emgu.CV" Version="4.1.1.3497" />
