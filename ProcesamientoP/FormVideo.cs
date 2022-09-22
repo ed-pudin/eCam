@@ -182,15 +182,23 @@ namespace ProcesamientoP
                MessageBox.Show(e.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
            }
 
-
         }
 
         private void cbCamera_SelectedIndexChanged(object sender, EventArgs e)
         {
-            Bitmap newImage = CurrentFrame.Bitmap;
-            newImage = setFilter(cbFilters.SelectedIndex,newImage);
-            pbVideo.Image = newImage;
-            pbVideo.SizeMode = PictureBoxSizeMode.StretchImage;
+            if(pbVideo.Image != null)
+            {
+                Bitmap newImage = CurrentFrame.Bitmap;
+                newImage = setFilter(cbFilters.SelectedIndex, newImage);
+                pbVideo.Image = newImage;
+                pbVideo.SizeMode = PictureBoxSizeMode.StretchImage;
+
+            }
+            else
+            {
+                MessageBox.Show("No se ha detectado algún archivo", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                cbFilters.SelectedIndex = -1;
+            }
 
         }
 
