@@ -140,6 +140,7 @@
             this.pbImageTaken.Location = new System.Drawing.Point(489, 63);
             this.pbImageTaken.Name = "pbImageTaken";
             this.pbImageTaken.Size = new System.Drawing.Size(418, 246);
+            this.pbImageTaken.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pbImageTaken.TabIndex = 2;
             this.pbImageTaken.TabStop = false;
             // 
@@ -151,6 +152,7 @@
             this.pbImage.Location = new System.Drawing.Point(37, 63);
             this.pbImage.Name = "pbImage";
             this.pbImage.Size = new System.Drawing.Size(418, 246);
+            this.pbImage.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pbImage.TabIndex = 1;
             this.pbImage.TabStop = false;
             // 
