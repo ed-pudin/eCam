@@ -118,7 +118,7 @@ namespace ProcesamientoP
             Image<Bgr, byte> grayImage = new Image<Bgr, byte>(bitm);
             Rectangle[] rectangles = cascadeClassifier.DetectMultiScale(grayImage, 1.2, 1); //por cada rectangulo es un rostro
 
-            /*
+            
             foreach (Rectangle rectangle in rectangles)
             {
                 person++;
@@ -138,14 +138,14 @@ namespace ProcesamientoP
                         graphics.DrawRectangle(pen, rectangle);
                     }
                 }
-            }*/
+            }
 
             // get new frame. clonar el bitmap
             pbCam.Image = bitm;
 
             //La excepción se dispara debido a que estas creando un nuevo thread, y este no puede modificar el UI,
             //ya que el único que puede hacerlo es el UI Thread (el hilo principal en tu programa).
-            //this.Invoke(new Action(() => lbNoPer.Text = person.ToString()));
+            this.Invoke(new Action(() => lbNoPer.Text = person.ToString()));
         
        
         }

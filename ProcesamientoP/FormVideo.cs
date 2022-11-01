@@ -29,8 +29,8 @@ namespace ProcesamientoP
         {
             InitializeComponent();
             //cargar filtros
-            //foreach (string filter in filters)
-                //cbFilters.Items.Add(filter);
+            foreach (string filter in filters)
+                cbFilters.Items.Add(filter);
         }
 
         private void panel3_Paint(object sender, PaintEventArgs e)
